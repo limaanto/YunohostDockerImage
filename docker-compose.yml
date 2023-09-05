@@ -1,32 +1,15 @@
 version: '2'
 services:
   yunohost:
-    image: 'changeme'
+    image: 'yunohost:withdependencies'
     privileged: true
     restart: always
-    container_name: Yunohost
-    hostname: yunohost.DOMAIN
-    ports:
-      - 2022:22
-      - 25:25
-      - 8080:80
-      - 443:443
-      - 465:465
-      - 587:587
-      - 993:993
-      - 5222:5222
-      - 5269:5269
-      - 8099:8099
+    container_name: yunohost
+    hostname: test.local
+    network_mode: host
     command: ["/bin/systemd"]
     volumes:
-      - backup:/home/yunohost.backup/archives
       - media:/media
-      #- /sys/fs/cgroup:/sys/fs/cgroup:ro
-      #- /var/run/docker.sock:/var/run/docker.sock:ro
+
 volumes:
   media:
-  backup:
-  
-networks:
-  yunohost:
-    driver: bridge
